@@ -7,11 +7,22 @@
   "engines": {
     "node": ">=6.13.0"
   },
+  "private": true,
   "scripts": {
+    "build": "webpack --config webpack.config.js"
   },
   "dependencies": {
+    "fs": "0.0.1-security",
+    "lodash": "^4.17.15",
+    "path": "^0.12.7"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   }
 }
