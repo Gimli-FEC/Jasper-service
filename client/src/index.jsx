@@ -1,4 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 
-ReactDOM.render((<div>REACT LOADED!!!!</div>), document.getElementById("app"));
+const App = props => (
+  <div>props.data</div>
+)
+
+ReactDOM.render(<App data={data/>, document.getElementById("app"));
