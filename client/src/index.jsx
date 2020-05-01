@@ -3,4 +3,4 @@ const App = props => (
   <div>props.data</div>
 )
 
-ReactDOM.render(<App data={data/>, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById("app"));
