@@ -11,8 +11,38 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
+app.get('/:id', (req, res) => {
+  data = {
+    "screenshots": [],
+    "videos": []
+  };
+  db.getDetails(req.params.id, (err, results) => {
+    if (err) {
+      console.error(err);
+    } else {
+      // data[details] = results[0].details;
+      data["details"] = results[0]["details"];
+    }
+  });
+  db.getScreenshots(req.params.id, (err, results) => {
+    if (err) {
+      console.error(err);
+    } else {
+      results.forEach(obj => data["screenshots"].push(obj["link"]));
+    }
+  });
 
+  db.getVideos(req.params.id, (err, results) => {
+    if (err) {
+      console.error(err);
+    } else {
+      results.forEach(obj => data["videos"].push(obj["link"]));
+      res.send(data);
+    }
+  });
 })
+
+
+
 
 app.listen(port, () => console.log(`listening on port ${port}!!!!!!!!!!!`));
