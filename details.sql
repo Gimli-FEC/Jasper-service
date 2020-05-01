@@ -1,10 +1,12 @@
+DROP DATABASE IF EXISTS details;
+
 CREATE DATABASE details;
 
 USE details;
 
 CREATE TABLE games (
   id INT NOT NULL AUTO_INCREMENT,
-  details VARCHAR(500),
+  details VARCHAR(1000),
   PRIMARY KEY (id)
 );
 
