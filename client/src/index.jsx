@@ -13,7 +13,10 @@ const App = props => {
     ]
   });
   useEffect(() => {
-    $.ajax('/games/20', {
+    const queryString = window.location.search;
+    const params = new URLSearchParams(queryString);
+    const id = params.get('id');
+    $.ajax(`/games/${id}`, {
       method: 'GET',
       success: results => {
         setDummyData(results);
