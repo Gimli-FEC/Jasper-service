@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <iframe
+    height="630"
+    src="https://www.youtube.com/embed/2LNOT2TYcmM"
+    title="1"
+    width="1120"
+  />
+</DocumentFragment>
+`;

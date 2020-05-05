@@ -41,4 +41,6 @@ app.get('/games/:id', (req, res) => {
 });
 
 
-app.listen(port, () => console.log(`listening on port ${port}!!!!!!!!!!!`));
+// /*comment out this line when testing ===> */ app.listen(3002, () => console.log(`listening on port 3002!!!!!!!!!!!`));
+
+module.exports = app;
