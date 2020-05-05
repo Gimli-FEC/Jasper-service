@@ -36,14 +36,14 @@ const App = () => {
       },
       error: (err) => console.error(err),
     });
-  }, [ dummyData ]);
+  }, [dummyData]);
 
   return (
     <>
       {dummyData.details.details}
       {dummyData.screenshots.map(({ link, id }) => <img alt="dummy data" src={link} key={id} />)}
       {dummyData.videos.map(({ link, id }) => (
-        <VideoPlayer url={link} id={id} key={id}/>
+        <VideoPlayer url={link} id={id} key={id} />
       ))}
     </>
   );
