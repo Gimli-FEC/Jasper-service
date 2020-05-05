@@ -12,7 +12,8 @@
     "build": "webpack --watch",
     "start": "node ./server/index.js",
     "start:dev": "nodemon index.js",
-    "seed": "node database/seed.js"
+    "seed": "node database/seed.js",
+    "lint-react": "eslint ./client/src/**/*.js ./client/src/*.js"
   },
   "dependencies": {
     "aws-sdk": "^2.666.0",
@@ -26,6 +27,7 @@
     "lodash": "^4.17.15",
     "mysql": "^2.18.1",
     "path": "^0.12.7",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
@@ -34,7 +36,14 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "babel-loader": "^8.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "jest": "^26.0.0",
     "nodemon": "^2.0.3",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"

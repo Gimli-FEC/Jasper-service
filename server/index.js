@@ -1,45 +1,36 @@
 const express = require('express');
-const app = express();
-const port = 3002;
 const bodyParser = require('body-parser');
-const path = require('path');
 const db = require('../database/index.js');
 
+const app = express();
+const port = 3002;
+
+
 app.use(bodyParser.json());
-
-app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.get('/games/:id', (req, res) => {
-  if (typeof req.params.id !== 'string'){
-    res.sendStatus('404');
-    return;
-  }
-  // if (typeof JSON.parse(req.params.id) !== 'number') {
-  //   res.sendStatus('404');
-  //   return;
-  // }
-  let data = {
-    "screenshots": [],
-    "videos": []
+  const data = {
+    screenshots: [],
+    videos: [],
   };
   db.getDetails(req.params.id, (err, results) => {
     if (err) {
       console.error(err);
     } else {
-      console.log(results)
-      data["details"] = results[0]["details"];
-      db.getScreenshots(req.params.id, (err, results) => {
-        if (err) {
-          console.error(err);
+      console.log(results);
+      data.details = results[0];
+      db.getScreenshots(req.params.id, (err2, results2) => {
+        if (err2) {
+          console.error(err2);
         } else {
-          results.forEach(obj => data["screenshots"].push(obj["link"]));
-          db.getVideos(req.params.id, (err, results) => {
-            if (err) {
-              console.error(err);
+          results2.forEach((obj) => data.screenshots.push(obj));
+          db.getVideos(req.params.id, (err3, results3) => {
+            if (err3) {
+              console.error(err3);
             } else {
-              results.forEach(obj => data["videos"].push(obj["link"]));
+              results3.forEach((obj) => data.videos.push(obj));
               res.send(data);
             }
           });
@@ -47,9 +38,7 @@ app.get('/games/:id', (req, res) => {
       });
     }
   });
-})
-
-
+});
 
 
 app.listen(port, () => console.log(`listening on port ${port}!!!!!!!!!!!`));
