@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import $ from 'jquery';
 import VideoPlayer from '../videoPlayer/videoPlayer';
+import Img from '../img/img';
+import Details from '../details/details';
 
 
 const App = () => {
@@ -32,7 +34,6 @@ const App = () => {
       method: 'GET',
       success: (results) => {
         setDummyData(results);
-        console.log(results);
       },
       error: (err) => console.error(err),
     });
@@ -40,10 +41,10 @@ const App = () => {
 
   return (
     <>
-      {dummyData.details.details}
-      {dummyData.screenshots.map(({ link, id }) => <img alt="dummy data" src={link} key={id} />)}
+      <Details text={dummyData.details.details} id={dummyData.details.id} />
+      {dummyData.screenshots.map(({ link, id }) => <Img link={link} id={id} key={id} />)}
       {dummyData.videos.map(({ link, id }) => (
-        <VideoPlayer url={link} id={id} key={id} />
+        <VideoPlayer link={link} id={id} key={id} />
       ))}
     </>
   );

@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import VideoPlayer from '../videoPlayer';
+import Img from '../img';
 
 afterEach(cleanup);
 
 it('matches snapshot', () => {
-  const { asFragment } = render(<VideoPlayer link='https://www.youtube.com/embed/2LNOT2TYcmM' id='1' />);
+  const { asFragment } = render(<Img link='https://fecpictures.s3.us-east-2.amazonaws.com/pics/100.jpg' id={1} key={1}/>);
   expect(asFragment()).toMatchSnapshot();
 });
