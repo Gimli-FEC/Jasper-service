@@ -19,7 +19,6 @@ app.get('/games/:id', (req, res) => {
     if (err) {
       console.error(err);
     } else {
-      console.log(results);
       data.details = results[0];
       db.getScreenshots(req.params.id, (err2, results2) => {
         if (err2) {
