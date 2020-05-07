@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <p>
+    Praesentium dicta et ut quisquam. Dolor mollitia omnis accusamus minus distinctio accusamus. Velit consequatur quos. Sed ab magnam amet. Dolorem omnis illo. Praesentium dolore dolores molestiae eos architecto rerum consequatur maiores qui. Dicta similique ab dignissimos veritatis eos distinctio iusto itaque. Aliquid natus hic. Fugiat nisi nam eligendi molestiae quasi cumque. Soluta esse in non aut quia.
+  </p>
+  <button>
+    VIDEOS
+  </button>
+  <button>
+    SCREENSHOTS
+  </button>
+  <img
+    alt="dummy data"
+    height="630"
+    src="https://fecpictures.s3.us-east-2.amazonaws.com/pics/100.jpg"
+    width="1120"
+  />
+  <iframe
+    height="630"
+    src="https://www.youtube.com/embed/2BBINlk3vv0"
+    title="1"
+    width="1120"
+  />
+</DocumentFragment>
+`;

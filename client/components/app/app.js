@@ -3,6 +3,7 @@ import $ from 'jquery';
 import VideoPlayer from '../videoPlayer/videoPlayer';
 import Img from '../img/img';
 import Details from '../details/details';
+import TabButton from '../tabButton/tabButton';
 
 
 const App = () => {
@@ -26,6 +27,9 @@ const App = () => {
       details: 'Praesentium dicta et ut quisquam. Dolor mollitia omnis accusamus minus distinctio accusamus. Velit consequatur quos. Sed ab magnam amet. Dolorem omnis illo. Praesentium dolore dolores molestiae eos architecto rerum consequatur maiores qui. Dicta similique ab dignissimos veritatis eos distinctio iusto itaque. Aliquid natus hic. Fugiat nisi nam eligendi molestiae quasi cumque. Soluta esse in non aut quia.',
     },
   });
+
+  const [currentlyDisplaying, setCurrentDisplay] = useState('VIDEOS');
+
   useEffect(() => {
     const queryString = window.location.search;
     const params = new URLSearchParams(queryString);
@@ -39,11 +43,24 @@ const App = () => {
     });
   }, [dummyData]);
 
+  const handleTabButtonClick = (e) => {
+    const text = e.target.innerText;
+    if(currentlyDisplaying === text) {
+      return;
+    }
+    setCurrentDisplay(text);
+  }
+
   return (
     <>
       <Details text={dummyData.details.details} id={dummyData.details.id} />
-      {dummyData.screenshots.map(({ link, id }) => <Img link={link} id={id} key={id} />)}
-      {dummyData.videos.map(({ link, id }) => (
+      <TabButton title='VIDEOS' handleClick={handleTabButtonClick} />
+      <TabButton title='SCREENSHOTS' handleClick={handleTabButtonClick}/>
+      {currentlyDisplaying === 'SCREENSHOTS' ?
+      dummyData.screenshots.map(
+        ({ link, id }) => <Img link={link} id={id} key={id} />)
+        :dummyData.videos.map(
+          ({ link, id }) => (
         <VideoPlayer link={link} id={id} key={id} />
       ))}
     </>
