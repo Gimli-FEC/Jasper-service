@@ -30,6 +30,8 @@ const App = () => {
 
   const [currentlyDisplaying, setCurrentDisplay] = useState('VIDEOS');
 
+  const {featuredMedia, setFeaturedMedia} = useState(dummydata.videos[0]);
+
   useEffect(() => {
     const queryString = window.location.search;
     const params = new URLSearchParams(queryString);
@@ -49,6 +51,10 @@ const App = () => {
       return;
     }
     setCurrentDisplay(text);
+  }
+
+  const handleImageClick = (e) => {
+    console.log(e.target);
   }
 
   return (
