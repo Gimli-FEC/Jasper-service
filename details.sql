@@ -6,7 +6,7 @@ USE details;
 
 CREATE TABLE games (
   id INT NOT NULL AUTO_INCREMENT,
-  details VARCHAR(2000),
+  details VARCHAR(3000),
   PRIMARY KEY (id)
 );
 
