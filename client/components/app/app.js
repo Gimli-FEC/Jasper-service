@@ -105,9 +105,9 @@ const App = () => {
       {
         currentlyDisplaying === 'SCREENSHOTS'
         ?
-        <MediaCarousel mediaList={dummyData.videos} linkType={'link'} />
+        <MediaCarousel mediaList={dummyData.videos} />
         :
-        <MediaCarousel mediaList={dummyData.screenshots} linkType={'thumbnail'} />
+        <MediaCarousel mediaList={dummyData.screenshots} />
       }
     </>
   );
