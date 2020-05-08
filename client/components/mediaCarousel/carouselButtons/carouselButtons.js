@@ -1,22 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MediaCarousel = ({ mediaList }) => {
-
+const CarouselButton = ({ title, clickHandler }) => {
   return (
-    <div>
-      <button>{'<'}</button>
-        {mediaList.map(media => (
-          <img src={media.thumbnail || media.link} key={media.id} alt='dummy data' width={140} height={79}  />
-        ))}
-      <button>{'>'}</button>
-    </div>
+    <button onClick={clickHandler}>{title}</button>
   );
 };
 
 MediaCarousel.propTypes = {
-  mediaList: PropTypes.array,
-  linkType: PropTypes.string,
+  title: '<',
+  clickHandler: (e) => console.log(e),
 };
 
 MediaCarousel.defaultProps = {
