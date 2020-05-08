@@ -1,15 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CarouselButton from './carouselButtons/carouselButton';
 
 const MediaCarousel = ({ mediaList }) => {
 
+  const handleCarouselButtonClick = (e) => {
+    console.log(e.target.innerText)
+  }
+
   return (
     <div>
-      <button>{'<'}</button>
-        {mediaList.map(media => (
-          <img src={media.thumbnail || media.link} key={media.id} alt='dummy data' width={140} height={79}  />
-        ))}
-      <button>{'>'}</button>
+      <CarouselButton title={'<'} handleClick={handleCarouselButtonClick} />
+      {mediaList.map(media => (
+        <img src={media.thumbnail || media.link} key={media.id} alt='dummy data' width={140} height={79}  />
+      ))}
+      <CarouselButton title={'>'} handleClick={handleCarouselButtonClick} />
     </div>
   );
 };
