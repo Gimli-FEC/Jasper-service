@@ -85,7 +85,7 @@ const App = () => {
   }
 
   const handleImageClick = (e) => {
-    console.log(e.target);
+    console.log(e);
   }
 
 
@@ -101,14 +101,7 @@ const App = () => {
         :
         <VideoPlayer link={featuredMedia.link} id={featuredMedia.id} />
       }
-
-      {
-        currentlyDisplaying === 'SCREENSHOTS'
-        ?
-        <MediaCarousel mediaList={dummyData.videos} />
-        :
-        <MediaCarousel mediaList={dummyData.screenshots} />
-      }
+      <MediaCarousel mediaList={currentlyDisplaying === 'SCREENSHOTS' ? dummyData.screenshots : dummyData.videos} />
     </>
   );
 };

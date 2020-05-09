@@ -31,9 +31,8 @@ for (let i = 0; i < 100; i += 1) {
 
 for (let i = 1; i <= 100; i += 1) {
   const random = Math.floor(Math.random() * 9) + 1;
-  let urlIndex = i;
   for (let j = 1; j <= random; j += 1) {
-    if (urlIndex > 100) urlIndex = 1;
+    let urlIndex = Math.floor(Math.random() * 99) + 1;
     const url = `https://fecpictures.s3.us-east-2.amazonaws.com/pics/${urlIndex}.jpg`;
     db.connection.query(`INSERT INTO screenshots (link, game_id) VALUES("${url}", "${i}");`, (err, results) => {
       if (err) {
@@ -42,7 +41,6 @@ for (let i = 1; i <= 100; i += 1) {
         console.log(results);
       }
     });
-    urlIndex += 1;
   }
 }
 
@@ -57,22 +55,20 @@ $.ajax('https://www.googleapis.com/youtube/v3/videos', {
     maxResults: 50,
   },
   success: (results) => {
-    console.log(results.items[0].snippet.thumbnails.default.url)
-    results.items.forEach((item) => vids.push({id: item.id, thumbnail: item.snippet.thumbnails.default.url}));
+
+    results.items.forEach((item) => vids.push({id: item.id, thumbnail: item.snippet.thumbnails.medium.url}));
+    console.log(vids);
     for (let i = 1; i <= 100; i += 1) {
       const random = Math.floor(Math.random() * 9) + 1;
-      let currentId = i - 1;
       for (let j = 1; j <= random; j += 1) {
-        if (currentId >= 50) currentId = 1;
+        let currentId = Math.floor(Math.random() * 49);
         db.connection.query(`INSERT INTO videos (link, thumbnail, game_id) VALUES("https://www.youtube.com/embed/${vids[currentId].id}", "${vids[currentId].thumbnail}", "${i}");`, (err, results2) => {
           if (err) {
             console.error(err);
           } else {
-            console.log(results2);
+
           }
         });
-        console.log(currentId, vids[currentId]);
-        currentId += 1;
       }
     }
   },
