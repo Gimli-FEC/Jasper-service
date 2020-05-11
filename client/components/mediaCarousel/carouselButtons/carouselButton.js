@@ -19,16 +19,12 @@ const CarouselButton = ({ title, handleClick, left }) => {
     margin: 0;
   `;
 
-  console.log(!hovered);
-
   return (
-
     <Button onMouseOver={(e) => changeHoverState(true)} onMouseLeave={(e) => changeHoverState(false)} onClick={handleClick}>
       <svg height="48" width="48" viewbox="0 0 48 48">
         <path stroke={hovered ? "black" : "grey"} d={ left ? "M31 12 L17 24.5 L31 36" : "M17 12 L31 24.5 L17 36"} fill="none" stroke-width="2" />
       </svg>
     </Button>
-
   );
 };
 

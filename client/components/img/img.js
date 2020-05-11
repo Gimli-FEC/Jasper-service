@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Img = ({ link, id, width, height }) => (
-  <img src={link} key={id} alt='dummy data'  width={width} height={height} />
+  <img src={link} key={id} alt='dummy data'  width='1120' height='630' />
 );
 
 Img.propTypes = {

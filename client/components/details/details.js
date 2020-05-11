@@ -1,9 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-const Details = ({ text, id }) => (
-  <p key={id}>{text}</p>
-);
+const Details = ({ text, id }) => {
+
+  const Div = styled.div`
+    width: 1280px;
+    height: 737.75;
+    margin: 0 auto;
+    text-align: center;
+  `;
+
+  const arr = text.split('.');
+
+  return (
+    <Div>
+      <h1>DETAILS</h1>
+      {arr.map(sentence => <p>{sentence + '.'}</p>)}
+    </Div>
+  );
+}
 
 Details.propTypes = {
   text: PropTypes.string,
