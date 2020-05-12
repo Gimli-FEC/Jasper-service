@@ -10,8 +10,6 @@ const MediaCarousel = ({ mediaList, imageClickHandler }) => {
 
   const [greaterThanSix, setGreaterThanSix] = useState(mediaList.length > 6 ? true : false);
 
-  const [currentArr, setCurrentArr] = useState(greaterThanSix ? mediaList.slice(0, 6).concat(mediaList) : mediaList);
-
   const ImagesDiv = styled.div`
     overflow: hidden;
     transform-style: preserve-3d;
@@ -30,7 +28,6 @@ const MediaCarousel = ({ mediaList, imageClickHandler }) => {
   `;
 
   const handleCarouselButtonClick = (e, left) => {
-    console.log(currentArr)
   }
 
   const shiftCarousel = (direction, n) => {
@@ -41,7 +38,7 @@ const MediaCarousel = ({ mediaList, imageClickHandler }) => {
     <ContainerDiv>
       {greaterThanSix ? <CarouselButton handleClick={handleCarouselButtonClick} left={true} /> : <></>}
       <ImagesDiv>
-        {currentArr.slice(mediaList.length, (mediaList.length * 2) - 1).map(media => {
+        {mediaList.map(media => {
           return (
           <Image src={media.thumbnail || media.link} key={media.id} id={media.id} alt='dummy data' width={96} height={53.75} onClick={imageClickHandler} />
           )})
