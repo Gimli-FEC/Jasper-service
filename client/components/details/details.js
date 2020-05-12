@@ -6,7 +6,6 @@ const Details = ({ text, id }) => {
 
   const Div = styled.div`
     width: 1280px;
-    height: 737.75;
     margin: 0 auto;
     text-align: center;
   `;

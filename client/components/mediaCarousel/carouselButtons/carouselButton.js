@@ -6,7 +6,7 @@ const CarouselButton = ({ title, handleClick, left }) => {
 
   const [hovered, changeHoverState] = useState(false);
 
-  const Button = styled.button`
+  const LeftButton = styled.button`
     cursor: pointer;
     background: transparent;
     border: none;
@@ -17,14 +17,15 @@ const CarouselButton = ({ title, handleClick, left }) => {
     font-weight: 400;
     font-size: 2rem;
     margin: 0;
+    padding: 0;
   `;
 
   return (
-    <Button onMouseOver={(e) => changeHoverState(true)} onMouseLeave={(e) => changeHoverState(false)} onClick={handleClick}>
+    <LeftButton onMouseOver={(e) => changeHoverState(true)} onMouseLeave={(e) => changeHoverState(false)} onClick={(e) => handleClick(e, left)}>
       <svg height="48" width="48" viewbox="0 0 48 48">
-        <path stroke={hovered ? "black" : "grey"} d={ left ? "M31 12 L17 24.5 L31 36" : "M17 12 L31 24.5 L17 36"} fill="none" stroke-width="2" />
+        <path stroke={hovered ? "black" : "grey"} d="M31 12 L17 24.5 L31 36" fill="none" stroke-width="2" />
       </svg>
-    </Button>
+    </LeftButton>
   );
 };
 
@@ -39,3 +40,4 @@ CarouselButton.defaultProps = {
 };
 
 export default CarouselButton;
+"M17 12 L31 24.5 L17 36"
