@@ -5,6 +5,7 @@ import Img from '../img/img';
 import Details from '../details/details';
 import TabButton from '../tabButton/tabButton';
 import MediaCarousel from '../mediaCarousel/mediaCarousel';
+import styled from 'styled-components';
 
 
 const App = () => {
@@ -13,21 +14,6 @@ const App = () => {
       {
         id: 999,
         link: "https://fecpictures.s3.us-east-2.amazonaws.com/pics/99.jpg",
-        game_id: 999
-      },
-      {
-        id: 999,
-        link: "https://fecpictures.s3.us-east-2.amazonaws.com/pics/21.jpg",
-        game_id: 99
-      },
-      {
-        id: 999,
-        link: "https://fecpictures.s3.us-east-2.amazonaws.com/pics/91.jpg",
-        game_id: 999,
-      },
-      {
-        id: 999,
-        link: "https://fecpictures.s3.us-east-2.amazonaws.com/pics/92.jpg",
         game_id: 999,
       },
     ],
@@ -38,12 +24,6 @@ const App = () => {
         thumbnail: 'https://i.ytimg.com/vi/GErG9femMQk/default.jpg',
         game_id: 999,
       },
-      {
-        id: 999,
-        link: "https://www.youtube.com/embed/M8-49EaVE00",
-        thumbnail: "https://i.ytimg.com/vi/M8-49EaVE00/default.jpg",
-        game_id: 999,
-      }
     ],
     details: {
       id: 999,
@@ -85,30 +65,54 @@ const App = () => {
   }
 
   const handleImageClick = (e) => {
-    console.log(e.target);
+    const targetId = Number(e.target.attributes.id.value);
+    if (currentlyDisplaying === 'SCREENSHOTS') {
+      for (let i = 0; i < dummyData.screenshots.length; i++) {
+        if (dummyData.screenshots[i].id === targetId) {
+          setFeaturedMedia(dummyData.screenshots[i]);
+          return;
+        }
+      }
+      alert('something went wrong');
+    } else {
+      for (let i = 0; i < dummyData.videos.length; i++) {
+        if (dummyData.videos[i].id === targetId) {
+          setFeaturedMedia(dummyData.videos[i]);
+          return;
+        }
+      }
+      alert('something went wrong');
+    }
   }
 
+  const MediaDiv = styled.div`
+    width: 1120px;
+    height: 729;
+    margin: 0 auto;
+  `;
+
+  const TabsDiv = styled.div`
+    margin: 0 auto;
+    width: 200px;
+  `;
 
   return (
     <>
       <Details text={dummyData.details.details} id={dummyData.details.id} />
-      <TabButton title='VIDEOS' handleClick={handleTabButtonClick} />
-      <TabButton title='SCREENSHOTS' handleClick={handleTabButtonClick}/>
-      {
-        currentlyDisplaying === 'SCREENSHOTS'
-        ?
-        <Img link={featuredMedia.link} id={featuredMedia.id} />
-        :
-        <VideoPlayer link={featuredMedia.link} id={featuredMedia.id} />
-      }
-
-      {
-        currentlyDisplaying === 'SCREENSHOTS'
-        ?
-        <MediaCarousel mediaList={dummyData.videos} />
-        :
-        <MediaCarousel mediaList={dummyData.screenshots} />
-      }
+      <TabsDiv>
+        <TabButton title='VIDEOS' handleClick={handleTabButtonClick} />
+        <TabButton title='SCREENSHOTS' handleClick={handleTabButtonClick}/>
+      </TabsDiv>
+      <MediaDiv>
+        {
+          currentlyDisplaying === 'SCREENSHOTS'
+          ?
+          <Img link={featuredMedia.link} id={featuredMedia.id} />
+          :
+          <VideoPlayer link={featuredMedia.link} id={featuredMedia.id} />
+        }
+        <MediaCarousel mediaList={currentlyDisplaying === 'SCREENSHOTS' ? dummyData.screenshots : dummyData.videos} imageClickHandler={handleImageClick} />
+      </MediaDiv>
     </>
   );
 };
