@@ -3,13 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const VideoPlayer = ({ link, id }) =>  {
-
-  const Iframe = styled.iframe`
-    margin: 0 auto;
-  `;
-
   return (
-    <iframe src={link} height="630" width="1120" title={id} />
+    <iframe src={link} height="630" width="1120" title={id} frameborder="0" />
   );
 }
 VideoPlayer.propTypes = {
