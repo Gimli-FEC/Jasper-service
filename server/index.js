@@ -1,14 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('../database/index.js');
+const cors = require('cors');
 
 const app = express();
 const port = 3002;
 
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors({
+  origin: 'http//localhost:3002',
+}))
 app.use(express.static('public'));
+
 
 app.get('/games/:id', (req, res) => {
   const data = {
