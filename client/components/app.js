@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import $ from 'jquery';
-import VideoPlayer from '../videoPlayer/videoPlayer';
-import Img from '../img/img';
-import Details from '../details/details';
-import TabButton from '../tabButton/tabButton';
-import MediaCarousel from '../mediaCarousel/mediaCarousel';
+import VideoPlayer from './videoPlayer';
+import Img from './img';
+import Details from './details';
+import TabButton from './tabButton';
+import MediaCarousel from './mediaCarousel';
 import styled from 'styled-components';
 
 
@@ -110,7 +110,7 @@ class App extends React.Component {
   render() {
     console.log(this.state.data)
     if (this.state.data.data === 'none') {
-      return <p>add an id parameter to see this page</p>
+      return <p>uh oh</p>
     }
     return (
       <>

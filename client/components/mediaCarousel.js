@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import ImageFadeIn from 'react-image-fade-in';
 
 const SwipeLeft = keyframes`
   0% { left: 0px; }
@@ -76,13 +75,9 @@ class MediaCarousel extends React.Component {
     if (prevProps !== this.props) {
       this.setState({
         currentArr: this.props.mediaList,
-      })
+      });
     }
   }
-
-
-
-
 
   handleLeftButtonClick(e) {
     var newArr = this.state.currentArr.slice(0);
@@ -90,7 +85,7 @@ class MediaCarousel extends React.Component {
     newArr.push(this.state.currentArr[0])
     this.setState({
       currentArr: newArr,
-    })
+    });
   }
 
   handleRightButtonClick(e) {
@@ -99,7 +94,7 @@ class MediaCarousel extends React.Component {
     newArr.unshift(this.state.currentArr[this.state.currentArr.length - 1])
     this.setState({
       currentArr: newArr,
-    })
+    });
   }
 
   render() {
