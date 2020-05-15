@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxjAm ktXmsI"
+  >
+    <h1
+      class="sc-AxirZ imEFoo"
+    >
+      DETAILS
+    </h1>
+    <p>
+      Praesentium dicta et ut quisquam. Dolor mollitia omnis accusamus minus distinctio accusamus. Velit consequatur quos. Sed ab magnam amet. Dolorem omnis illo. Praesentium dolore dolores molestiae eos architecto rerum consequatur maiores qui.
+    </p>
+    <br />
+    <br />
+    <br />
+    <b>
+      Feautures:
+    </b>
+    <ul
+      style="align-items: initial;"
+    >
+      <li>
+         Dicta similique ab dignissimos veritatis eos distinctio iusto itaque.
+      </li>
+      <li>
+         Aliquid natus hic.
+      </li>
+      <li>
+         Fugiat nisi nam eligendi molestiae quasi cumque.
+      </li>
+    </ul>
+    <br />
+    <br />
+    <br />
+    <br />
+    <b>
+      Other Details:
+    </b>
+    <p>
+       Fugiat nisi nam eligendi molestiae quasi cumque
+    </p>
+    <p>
+       Soluta esse in non aut quia
+    </p>
+    <p />
+  </div>
+</DocumentFragment>
+`;

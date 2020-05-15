@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Details from '../details';
+import Details from '../components/details';
 
 afterEach(cleanup);
 

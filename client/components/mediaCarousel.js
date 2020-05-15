@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import ImageFadeIn from 'react-image-fade-in';
 
 const SwipeLeft = keyframes`
   0% { left: 0px; }
@@ -17,17 +16,15 @@ const ContainerDiv = styled.div`
 
 const ImagesDiv = styled.div`
   overflow: hidden;
-  transform-style: preserve-3d;
   display: flex;
   justify-content: center;
 `;
 
 const Image = styled.img`
   cursor: pointer;
-  margin: 10px;
-  padding: 0;
+  margin: 7px;
+  padding: 3;
   position: relative;
-  transition: overflow 1s;
   :active {
     border: 2px solid black;
   }
@@ -43,7 +40,7 @@ const LeftButton = styled.button`
   min-height: 0;
   font-weight: 400;
   font-size: 2rem;
-  margin: 0;
+  margin: auto 0;
   padding: 0;
   }
 `;
@@ -60,12 +57,11 @@ const LeftButton = styled.button`
   font-size: 2rem;
   margin: 0;
   padding: 0;
+  margin: auto 0;
 `;
 
 
-class MediaCarousel extends React.PureComponent {
-
-
+class MediaCarousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -75,22 +71,13 @@ class MediaCarousel extends React.PureComponent {
     }
   }
 
-
-  componentDidUpdate(prevProps) {
+  componentDidMount(prevProps) {
     if (prevProps !== this.props) {
       this.setState({
         currentArr: this.props.mediaList,
-      })
+      });
     }
   }
-
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log(nextProps)
-  //   console.log(this.props)
-  //   return true;
-  // }
-
 
   handleLeftButtonClick(e) {
     var newArr = this.state.currentArr.slice(0);
@@ -98,7 +85,7 @@ class MediaCarousel extends React.PureComponent {
     newArr.push(this.state.currentArr[0])
     this.setState({
       currentArr: newArr,
-    })
+    });
   }
 
   handleRightButtonClick(e) {
@@ -107,7 +94,7 @@ class MediaCarousel extends React.PureComponent {
     newArr.unshift(this.state.currentArr[this.state.currentArr.length - 1])
     this.setState({
       currentArr: newArr,
-    })
+    });
   }
 
   render() {
@@ -130,7 +117,7 @@ class MediaCarousel extends React.PureComponent {
           </LeftButton> : <></>
         }
 
-        <ImagesDiv>
+        <ImagesDiv length={this.state.currentArr.length}>
           {this.state.currentArr.slice(0, 6).map(media => {
             return (
             <Image key={media.id} id={media.id} alt='dummy data' onClick={(e) => imageClickHandler(e)}  src={media.thumbnail || media.link} width={96} height={53.75} />
