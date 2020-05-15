@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
+import ImageFadeIn from 'react-image-fade-in';
 
 const SwipeLeft = keyframes`
   0% { left: 0px; }
@@ -26,6 +27,7 @@ const Image = styled.img`
   margin: 10px;
   padding: 0;
   position: relative;
+  transition: overflow 1s;
   :active {
     border: 2px solid black;
   }
@@ -61,14 +63,8 @@ const LeftButton = styled.button`
 `;
 
 
-class MediaCarousel extends React.Component {
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (this.props.mediaList === nextProps.mediaList) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // }
+class MediaCarousel extends React.PureComponent {
+
 
   constructor(props) {
     super(props);
@@ -80,7 +76,6 @@ class MediaCarousel extends React.Component {
   }
 
 
-
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       this.setState({
@@ -88,6 +83,14 @@ class MediaCarousel extends React.Component {
       })
     }
   }
+
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log(nextProps)
+  //   console.log(this.props)
+  //   return true;
+  // }
+
 
   handleLeftButtonClick(e) {
     var newArr = this.state.currentArr.slice(0);
@@ -128,9 +131,9 @@ class MediaCarousel extends React.Component {
         }
 
         <ImagesDiv>
-          {this.state.currentArr.map(media => {
+          {this.state.currentArr.slice(0, 6).map(media => {
             return (
-            <Image src={media.thumbnail || media.link} key={media.id} id={media.id} alt='dummy data' width={96} height={53.75} onClick={(e) => imageClickHandler(e)} />
+            <Image key={media.id} id={media.id} alt='dummy data' onClick={(e) => imageClickHandler(e)}  src={media.thumbnail || media.link} width={96} height={53.75} />
             )})
           }
         </ImagesDiv>

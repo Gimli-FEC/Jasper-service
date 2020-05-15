@@ -106,8 +106,8 @@ class App extends React.Component {
   }
 
   handleImageClick(e) {
+    console.log(e.target)
     const targetId = Number(e.target.attributes.id.value);
-    e.target.style
     if (this.state.currentlyDisplaying === 'SCREENSHOTS') {
       for (let i = 0; i < this.state.dummyData.screenshots.length; i++) {
         if (this.state.dummyData.screenshots[i].id === targetId) {
@@ -138,8 +138,8 @@ class App extends React.Component {
         <Details text={this.state.dummyData.details.details} id={this.state.dummyData.details.id} />
         <Hr />
         <TabsDiv>
-          <TabButton title='VIDEOS' handleClick={this.handleTabButtonClick.bind(this)} />
-          <TabButton title='SCREENSHOTS' handleClick={this.handleTabButtonClick.bind(this)}/>
+          <TabButton title='VIDEOS' handleClick={this.handleTabButtonClick.bind(this)} featured={this.state.currentlyDisplaying === 'VIDEOS'}/>
+          <TabButton title='SCREENSHOTS' handleClick={this.handleTabButtonClick.bind(this)} featured={this.state.currentlyDisplaying === 'SCREENSHOTS'} />
         </TabsDiv>
         <MediaDiv>
           {
