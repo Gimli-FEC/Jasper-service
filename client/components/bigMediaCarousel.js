@@ -84,8 +84,8 @@ class BigMediaCarousel extends React.Component {
     }
     return (
       <Div>
-          <LeftButton onMouseOver={(e) => this.setState({leftHovered: true,})} onMouseLeave={(e) => this.setState({leftHovered: false,})} onClick={handleButtonClick}>
-            <svg height="48" width="48" viewbox="0 0 48 48">
+          <LeftButton onMouseOver={(e) => this.setState({leftHovered: true,})} onMouseLeave={(e) => this.setState({leftHovered: false,})} onClick={handleButtonClick} >
+            <svg height="48" width="48" viewbox="0 0 48 48" id={this.state.featuredMedia.id}>
               <path stroke={this.state.leftHovered ? "black" : "grey"} d={"M31 12 L17 24.5 L31 36"} fill="none" stroke-width="2" />
             </svg>
           </LeftButton>
@@ -96,7 +96,7 @@ class BigMediaCarousel extends React.Component {
           }
 
         <RightButton onMouseOver={(e) => this.setState({rightHovered: true,})} onMouseLeave={(e) => this.setState({rightHovered: false,})} onClick={handleButtonClick} >
-          <svg height="48" width="48" viewbox="0 0 48 48">
+          <svg height="48" width="48" viewbox="0 0 48 48" id={this.state.featuredMedia.id}>
             <path stroke={this.state.rightHovered ? "black" : "grey"} d={"M17 12 L31 24.5 L17 36"} fill="none" stroke-width="2" />
           </svg>
         </RightButton>

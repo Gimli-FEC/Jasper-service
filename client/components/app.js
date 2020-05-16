@@ -85,17 +85,83 @@ class App extends React.Component {
 
 
   handleButtonClick(e, left) {
+    console.log(e.target)
+    const targetId = Number(e.target.attributes.id.value);
     if (left) {
       if (this.state.currentlyDisplaying === 'VIDEOS') {
-        console.log('videos', this.state.videos)
+        console.log('videos', this.state.data.videos);
+        let index;
+        for (let i = 0; i < this.state.data.videos.length; i++) {
+          if (this.state.data.videos[i].id === targetId) {
+            index = i;
+            break;
+          }
+        }
+        if (index !== 0) {
+          this.setState({
+            featuredMedia: this.state.videos[index - 1],
+          })
+        } else {
+          this.setState({
+            featuredMedia: this.state.videos[this.state.videos.length - 1],
+          })
+        }
       } else {
-        console.log('screenshots', this.state.screenshots)
+        console.log('screenshots', this.state.data.screenshots);
+        let index;
+        for (let i = 0; i < this.state.data.screenshots.length; i++) {
+          if (this.state.data.screenshots[i].id === targetId) {
+            index = i;
+            break;
+          }
+        }
+        if (index !== 0) {
+          this.setState({
+            featuredMedia: this.state.data.screenshots[index - 1],
+          })
+        } else {
+          this.setState({
+            featuredMedia: this.state.data.screenshots[this.state.data.screenshots.length - 1],
+          })
+        }
       }
     } else {
       if (this.state.currentlyDisplaying === 'VIDEOS') {
-        console.log('videos', this.state.videos)
+        console.log('videos', this.state.data.videos);
+        let index;
+        for (let i = 0; i < this.state.data.videos.length; i++) {
+          if (this.state.data.videos[i].id === targetId) {
+            index = i;
+            break;
+          }
+        }
+        if (index !== this.state.data.videos.length) {
+          this.setState({
+            featuredMedia: this.state.data.videos[index + 1],
+          })
+        } else {
+          this.setState({
+            featuredMedia: this.state.data.videos[0],
+          })
+        }
       } else {
-        console.log('screenshots', this.state.screenshots)
+        console.log('screenshots', this.state.data.screenshots);
+        let index;
+        for (let i = 0; i < this.state.data.screenshots.length; i++) {
+          if (this.state.data.screenshots[i].id === targetId) {
+            index = i;
+            break;
+          }
+        }
+        if (index !== this.state.data.screenshots.length) {
+          this.setState({
+            featuredMedia: this.state.data.screenshots[index + 1],
+          })
+        } else {
+          this.setState({
+            featuredMedia: this.state.data.screenshots[0],
+          })
+        }
       }
     }
   }
