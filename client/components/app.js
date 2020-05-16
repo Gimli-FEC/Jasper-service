@@ -5,9 +5,24 @@ import Img from './img';
 import Details from './details';
 import TabButton from './tabButton';
 import MediaCarousel from './mediaCarousel';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+import BigMediaCarousel from './bigMediaCarousel';
 
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Montserrat,sans-serif;
+  }
+
+  #Details {
+    width: 100%;
+    height: auto;
+    background-color:	rgb(242, 240, 242);
+  }
+`;
 
 const MediaDiv = styled.div`
   width: 1120px;
@@ -42,6 +57,7 @@ class App extends React.Component {
     }
     this.handleImageClick = this.handleImageClick.bind(this);
     this.handleTabButtonClick = this.handleTabButtonClick.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   componentDidMount() {
@@ -51,6 +67,7 @@ class App extends React.Component {
     $.ajax(`http://localhost:3002/games/${id || '1'}`, {
       method: 'GET',
       success: (results) => {
+        console.log(results);
         this.setState({
           data: results,
           featuredMedia: results.videos[0],
@@ -80,8 +97,90 @@ class App extends React.Component {
     }
   }
 
-  handleImageClick(e) {
+
+  handleButtonClick(e, left) {
     console.log(e.target)
+    const targetId = Number(e.target.attributes.id.value);
+    if (left) {
+      if (this.state.currentlyDisplaying === 'VIDEOS') {
+        console.log('videos', this.state.data.videos);
+        let index;
+        for (let i = 0; i < this.state.data.videos.length; i++) {
+          if (this.state.data.videos[i].id === targetId) {
+            index = i;
+            break;
+          }
+        }
+        if (index !== 0) {
+          this.setState({
+            featuredMedia: this.state.videos[index - 1],
+          })
+        } else {
+          this.setState({
+            featuredMedia: this.state.videos[this.state.videos.length - 1],
+          })
+        }
+      } else {
+        console.log('screenshots', this.state.data.screenshots);
+        let index;
+        for (let i = 0; i < this.state.data.screenshots.length; i++) {
+          if (this.state.data.screenshots[i].id === targetId) {
+            index = i;
+            break;
+          }
+        }
+        if (index !== 0) {
+          this.setState({
+            featuredMedia: this.state.data.screenshots[index - 1],
+          })
+        } else {
+          this.setState({
+            featuredMedia: this.state.data.screenshots[this.state.data.screenshots.length - 1],
+          })
+        }
+      }
+    } else {
+      if (this.state.currentlyDisplaying === 'VIDEOS') {
+        console.log('videos', this.state.data.videos);
+        let index;
+        for (let i = 0; i < this.state.data.videos.length; i++) {
+          if (this.state.data.videos[i].id === targetId) {
+            index = i;
+            break;
+          }
+        }
+        if (index !== this.state.data.videos.length) {
+          this.setState({
+            featuredMedia: this.state.data.videos[index + 1],
+          })
+        } else {
+          this.setState({
+            featuredMedia: this.state.data.videos[0],
+          })
+        }
+      } else {
+        console.log('screenshots', this.state.data.screenshots);
+        let index;
+        for (let i = 0; i < this.state.data.screenshots.length; i++) {
+          if (this.state.data.screenshots[i].id === targetId) {
+            index = i;
+            break;
+          }
+        }
+        if (index !== this.state.data.screenshots.length) {
+          this.setState({
+            featuredMedia: this.state.data.screenshots[index + 1],
+          })
+        } else {
+          this.setState({
+            featuredMedia: this.state.data.screenshots[0],
+          })
+        }
+      }
+    }
+  }
+
+  handleImageClick(e) {
     const targetId = Number(e.target.attributes.id.value);
     if (this.state.currentlyDisplaying === 'SCREENSHOTS') {
       for (let i = 0; i < this.state.data.screenshots.length; i++) {
@@ -114,6 +213,7 @@ class App extends React.Component {
     }
     return (
       <>
+        <GlobalStyle />
         <Details text={this.state.data.details.details} id={this.state.data.details.id} />
         <Hr />
         <TabsDiv>
@@ -121,13 +221,16 @@ class App extends React.Component {
           <TabButton title='SCREENSHOTS' handleClick={this.handleTabButtonClick} featured={this.state.currentlyDisplaying === 'SCREENSHOTS'} />
         </TabsDiv>
         <MediaDiv>
-          {
+          {/* {
             this.state.currentlyDisplaying === 'SCREENSHOTS'
             ?
             <Img link={this.state.featuredMedia.link} id={this.state.featuredMedia.id} />
             :
             <VideoPlayer link={this.state.featuredMedia.link} id={this.state.featuredMedia.id} />
-          }
+          } */}
+
+          <BigMediaCarousel featured={this.state.featuredMedia} handleButtonClick={this.handleButtonClick} />
+
           <MediaCarousel mediaList={this.state.currentlyDisplaying === 'SCREENSHOTS' ? this.state.data.screenshots : this.state.data.videos} imageClickHandler={this.handleImageClick} />
         </MediaDiv>
       </>

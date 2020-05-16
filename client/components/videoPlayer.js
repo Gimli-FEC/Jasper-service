@@ -1,10 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`;
+
+const Iframe = styled.iframe`
+  animation: ${fadeIn} 2s;
+`;
 
 const VideoPlayer = ({ link, id }) =>  {
   return (
-    <iframe src={link} height="630" width="1120" title={id} frameborder="0" />
+    <Iframe src={link} height="630" width="1120" title={id} frameborder="0" />
   );
 }
 VideoPlayer.propTypes = {

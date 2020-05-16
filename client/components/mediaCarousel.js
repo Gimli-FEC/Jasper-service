@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
-const SwipeLeft = keyframes`
-  0% { left: 0px; }
-  100% { left: -113px; }
+
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 `;
 
 const ContainerDiv = styled.div`
@@ -24,7 +25,9 @@ const Image = styled.img`
   cursor: pointer;
   margin: 7px;
   padding: 3;
+
   position: relative;
+  animation: ${fadeIn} 1s;
   :active {
     border: 2px solid black;
   }
@@ -42,22 +45,21 @@ const LeftButton = styled.button`
   font-size: 2rem;
   margin: auto 0;
   padding: 0;
-  }
 `;
 
   const RightButton = styled.button`
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  outline: none;
-  height: 48px;
-  width: 48px;
-  min-height: 0;
-  font-weight: 400;
-  font-size: 2rem;
-  margin: 0;
-  padding: 0;
-  margin: auto 0;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    height: 48px;
+    width: 48px;
+    min-height: 0;
+    font-weight: 400;
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    margin: auto 0;
 `;
 
 
@@ -67,24 +69,22 @@ class MediaCarousel extends React.Component {
     this.state = {
       leftHovered: false,
       rightHovered: false,
-      currentArr: [],
+      currentArr: props.mediaList,
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
+    if (prevProps.mediaList !== this.props.mediaList) {
       this.setState({
         currentArr: this.props.mediaList,
       });
     }
   }
 
-  componentDidMount(prevProps) {
-    if (prevProps !== this.props) {
+  componentDidMount() {
       this.setState({
         currentArr: this.props.mediaList,
       });
-    }
   }
 
   handleLeftButtonClick(e) {
@@ -104,6 +104,8 @@ class MediaCarousel extends React.Component {
       currentArr: newArr,
     });
   }
+
+
 
   render() {
     const { mediaList, imageClickHandler } = this.props;
@@ -128,7 +130,7 @@ class MediaCarousel extends React.Component {
         <ImagesDiv length={this.state.currentArr.length}>
           {this.state.currentArr.slice(0, 6).map(media => {
             return (
-            <Image key={media.id} id={media.id} alt='dummy data' onClick={(e) => imageClickHandler(e)}  src={media.thumbnail || media.link} width={96} height={53.75} />
+              <Image key={media.id} id={media.id} alt='dummy data' onClick={(e) => imageClickHandler(e)}  src={media.thumbnail || media.link} width={96} height={53.75} />
             )})
           }
         </ImagesDiv>
