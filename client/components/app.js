@@ -6,6 +6,7 @@ import Details from './details';
 import TabButton from './tabButton';
 import MediaCarousel from './mediaCarousel';
 import styled from 'styled-components';
+import BigMediaCarousel from './bigMediaCarousel';
 
 
 
@@ -42,6 +43,7 @@ class App extends React.Component {
     }
     this.handleImageClick = this.handleImageClick.bind(this);
     this.handleTabButtonClick = this.handleTabButtonClick.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   componentDidMount() {
@@ -51,6 +53,7 @@ class App extends React.Component {
     $.ajax(`http://localhost:3002/games/${id || '1'}`, {
       method: 'GET',
       success: (results) => {
+        console.log(results);
         this.setState({
           data: results,
           featuredMedia: results.videos[0],
@@ -80,8 +83,24 @@ class App extends React.Component {
     }
   }
 
+
+  handleButtonClick(e, left) {
+    if (left) {
+      if (this.state.currentlyDisplaying === 'VIDEOS') {
+        console.log('videos', this.state.videos)
+      } else {
+        console.log('screenshots', this.state.screenshots)
+      }
+    } else {
+      if (this.state.currentlyDisplaying === 'VIDEOS') {
+        console.log('videos', this.state.videos)
+      } else {
+        console.log('screenshots', this.state.screenshots)
+      }
+    }
+  }
+
   handleImageClick(e) {
-    console.log(e.target)
     const targetId = Number(e.target.attributes.id.value);
     if (this.state.currentlyDisplaying === 'SCREENSHOTS') {
       for (let i = 0; i < this.state.data.screenshots.length; i++) {
@@ -121,13 +140,16 @@ class App extends React.Component {
           <TabButton title='SCREENSHOTS' handleClick={this.handleTabButtonClick} featured={this.state.currentlyDisplaying === 'SCREENSHOTS'} />
         </TabsDiv>
         <MediaDiv>
-          {
+          {/* {
             this.state.currentlyDisplaying === 'SCREENSHOTS'
             ?
             <Img link={this.state.featuredMedia.link} id={this.state.featuredMedia.id} />
             :
             <VideoPlayer link={this.state.featuredMedia.link} id={this.state.featuredMedia.id} />
-          }
+          } */}
+
+          <BigMediaCarousel featured={this.state.featuredMedia} handleButtonClick={this.handleButtonClick} />
+
           <MediaCarousel mediaList={this.state.currentlyDisplaying === 'SCREENSHOTS' ? this.state.data.screenshots : this.state.data.videos} imageClickHandler={this.handleImageClick} />
         </MediaDiv>
       </>
