@@ -71,6 +71,14 @@ class MediaCarousel extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.setState({
+        currentArr: this.props.mediaList,
+      });
+    }
+  }
+
   componentDidMount(prevProps) {
     if (prevProps !== this.props) {
       this.setState({
@@ -99,7 +107,7 @@ class MediaCarousel extends React.Component {
 
   render() {
     const { mediaList, imageClickHandler } = this.props;
-    console.log(this.state);
+    console.log('state', this.state);
     if (mediaList.length < 2) {
       return (<div></div>);
     }
