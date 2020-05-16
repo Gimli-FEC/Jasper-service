@@ -8,14 +8,13 @@ const fadeIn = keyframes`
 `;
 
 const Iframe = styled.iframe`
-  animation: ${fadeIn} 2s;
+  animation: ${fadeIn} 10s;
 `;
 
-const VideoPlayer = ({ link, id }) =>  {
-  return (
-    <Iframe src={link} height="630" width="1120" title={id} frameborder="0" />
-  );
-}
+const VideoPlayer = ({ link, id }) => (
+  <Iframe src={link} height="630" width="1120" title={id} frameborder="0" />
+);
+
 VideoPlayer.propTypes = {
   link: PropTypes.string,
   id: PropTypes.number,
