@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Img from '../img';
+import Img from '../components/img';
 
 afterEach(cleanup);
 

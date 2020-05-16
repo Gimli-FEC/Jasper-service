@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import TabButton from '../tabButton';
+import TabButton from '../components/tabButton';
 
 afterEach(cleanup);
 
