@@ -67,24 +67,22 @@ class MediaCarousel extends React.Component {
     this.state = {
       leftHovered: false,
       rightHovered: false,
-      currentArr: [],
+      currentArr: props.mediaList,
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
+    if (prevProps.mediaList !== this.props.mediaList) {
       this.setState({
         currentArr: this.props.mediaList,
       });
     }
   }
 
-  componentDidMount(prevProps) {
-    if (prevProps !== this.props) {
+  componentDidMount() {
       this.setState({
         currentArr: this.props.mediaList,
       });
-    }
   }
 
   handleLeftButtonClick(e) {
