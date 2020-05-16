@@ -5,10 +5,24 @@ import Img from './img';
 import Details from './details';
 import TabButton from './tabButton';
 import MediaCarousel from './mediaCarousel';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import BigMediaCarousel from './bigMediaCarousel';
 
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Montserrat,sans-serif;
+  }
+
+  #Details {
+    width: 100%;
+    height: auto;
+    background-color:	rgb(242, 240, 242);
+  }
+`;
 
 const MediaDiv = styled.div`
   width: 1120px;
@@ -199,6 +213,7 @@ class App extends React.Component {
     }
     return (
       <>
+        <GlobalStyle />
         <Details text={this.state.data.details.details} id={this.state.data.details.id} />
         <Hr />
         <TabsDiv>
