@@ -109,13 +109,13 @@ class App extends React.Component {
             break;
           }
         }
-        if (index !== 0) {
+        if (index > 0) {
           this.setState({
-            featuredMedia: this.state.videos[index - 1],
+            featuredMedia: this.state.data.videos[index - 1],
           });
         } else {
           this.setState({
-            featuredMedia: this.state.videos[this.state.videos.length - 1],
+            featuredMedia: this.state.data.videos[this.state.data.videos.length - 1],
           });
         }
       } else {

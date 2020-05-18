@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import VideoPlayer from './videoPlayer';
 import Img from './img';
-
-
-const fadeIn = keyframes`
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-`;
 
 const Div = styled.div`
   display: flex;
