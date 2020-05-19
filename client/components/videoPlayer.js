@@ -7,15 +7,15 @@ const fadeIn = keyframes`
   100% { opacity: 1; }
 `;
 
-const Iframe = styled.iframe`
+const Iframe = styled.div`
   animation: ${fadeIn} 2s;
+  border: none;
 `;
 
-const VideoPlayer = ({ link, id }) =>  {
-  return (
-    <Iframe src={link} height="630" width="1120" title={id} frameborder="0" />
-  );
-}
+const VideoPlayer = ({link, id}) => (
+  <iframe src={link} height="630" width="1120" title={id} />
+);
+
 VideoPlayer.propTypes = {
   link: PropTypes.string,
   id: PropTypes.number,

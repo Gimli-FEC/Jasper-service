@@ -22,7 +22,7 @@ const A = styled.a`
 `;
 
 const TabButton = ({ title, handleClick, featured }) => (
-    <A onClick={handleClick} style={{borderTop: featured ? '3px solid #de2121' : '#cccccc'}}>{title}</A>
+  <A onClick={handleClick} style={{borderTop: featured ? '3px solid #de2121' : '#cccccc'}}>{title}</A>
 );
 
 TabButton.propTypes = {
