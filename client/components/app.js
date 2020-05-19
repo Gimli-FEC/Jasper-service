@@ -10,7 +10,7 @@ import BigMediaCarousel from './bigMediaCarousel';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
     font-family: Montserrat,sans-serif;
