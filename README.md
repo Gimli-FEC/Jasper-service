@@ -14,7 +14,7 @@ Nodemon - watching server for changes, installation here: https://www.npmjs.com/
 
 ## YouTube Data Api
 
-The seeding script of this repo requires a YouTube Data Api to work. Visit this link to sign up for one: https://developers.google.com/youtube/v3/getting-started
+The seeding script of this repo requires a YouTube Data Api key to work. Visit this link to sign up for one: https://developers.google.com/youtube/v3/getting-started
 
 ### Installing
 
@@ -31,8 +31,6 @@ npm run start:dev (starts server and watches for changes)
 * [React](https://reactjs.org/docs/getting-started.html) - The web framework used
 * [NPM](https://docs.npmjs.com/) - Dependency Management
 * [Express](https://expressjs.com/en/starter/installing.html) - Server Technology used
-
-
 
 ## Contributors
 
