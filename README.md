@@ -10,16 +10,21 @@ Clone this repo to get started!
 
 MySQL - Installation instructions here: https://dev.mysql.com/doc/refman/8.0/en/installing.html
 
-### Installing
-
-npm install to install all dependencies
-
-npm run seed 
+Nodemon - watching server for changes, installation here: https://www.npmjs.com/package/nodemon
 
 ## YouTube Data Api
 
 The seeding script of this repo requires a YouTube Data Api to work. Visit this link to sign up for one: https://developers.google.com/youtube/v3/getting-started
 
+### Installing
+
+npm install (install all dependencies)
+
+npm run seed (seed MySQL DB(check database index file for userName and password configuration))
+
+npm run build:dev (build bundle and watches for changes)
+
+npm run start:dev (starts server and watches for changes)
 
 ## Built With
 
