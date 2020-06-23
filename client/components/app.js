@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import $ from 'jquery';
 import styled, { createGlobalStyle } from 'styled-components';
-import Details from './details';
-import TabButton from './tabButton';
-import MediaCarousel from './mediaCarousel';
+// import Details from './details';
+// import TabButton from './tabButton';
+// import MediaCarousel from './mediaCarousel';
 
-import BigMediaCarousel from './bigMediaCarousel';
+// import BigMediaCarousel from './bigMediaCarousel';
+
+
+const Details = lazy(() => import('./details'));
+const TabButton = lazy(()=> import('./tabButton'));
+const MediaCarousel = lazy(() => import('./mediaCarousel'));
+const BigMediaCarousel = lazy(() => import('./bigMediaCarousel'));
 
 
 const GlobalStyle = createGlobalStyle`
@@ -204,7 +210,7 @@ class App extends React.Component {
       return <p>uh oh</p>;
     }
     return (
-      <>
+      <Suspense fallback={<div>Loading</div>}>
         <GlobalStyle />
         <Details text={this.state.data.details.details} id={this.state.data.details.id} />
         <Hr />
@@ -216,7 +222,7 @@ class App extends React.Component {
           <BigMediaCarousel featured={this.state.featuredMedia} handleButtonClick={this.handleButtonClick} length={this.state.currentlyDisplaying === 'VIDEOS' ? this.state.data.videos.length : this.state.data.screenshots.length}/>
           <MediaCarousel mediaList={this.state.currentlyDisplaying === 'SCREENSHOTS' ? this.state.data.screenshots : this.state.data.videos} imageClickHandler={this.handleImageClick} />
         </MediaDiv>
-      </>
+      </Suspense>
     );
   }
 }
