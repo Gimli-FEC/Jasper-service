@@ -1,5 +1,5 @@
 node_modules/
 database/config.js
-public/bundle.js
+public/
 client/src
 client/components/carousel
