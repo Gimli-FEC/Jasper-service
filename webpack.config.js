@@ -1,5 +1,4 @@
 const path = require('path');
-const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   entry: path.resolve(__dirname, 'client', 'index.js'),
@@ -18,5 +17,4 @@ module.exports = {
       },
     ],
   },
-  plugins: [new CompressionPlugin()],
 };

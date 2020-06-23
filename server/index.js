@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const db = require('../database/index.js');
 
+const compression = require('compression');
+
 const app = express();
 const port = process.env.PORT || 3002;
 
@@ -9,7 +11,11 @@ app.use(cors({
   origin: `http//localhost:${port}`,
 }));
 
-app.use(express.static('public'));
+app.use(compression());
+
+app.use(express.static('./public'));
+
+
 
 app.get('/games/:id', (req, res) => {
   const data = {

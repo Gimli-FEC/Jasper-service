@@ -3,6 +3,7 @@
   "plugins": [
     ["@babel/transform-runtime", {
       "regenerator": true
-    }]
+    }],
+    "syntax-dynamic-import"
   ]
 }
