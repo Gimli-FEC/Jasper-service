@@ -1,14 +1,14 @@
 import React, { lazy, Suspense } from 'react';
 import $ from 'jquery';
 import styled, { createGlobalStyle } from 'styled-components';
-// import Details from './details';
+import Details from './details';
 // import TabButton from './tabButton';
 // import MediaCarousel from './mediaCarousel';
 
 // import BigMediaCarousel from './bigMediaCarousel';
 
 
-const Details = lazy(() => import('./details'));
+// const Details = lazy(() => import('./details'));
 const TabButton = lazy(()=> import('./tabButton'));
 const MediaCarousel = lazy(() => import('./mediaCarousel'));
 const BigMediaCarousel = lazy(() => import('./bigMediaCarousel'));
@@ -210,19 +210,23 @@ class App extends React.Component {
       return <p>uh oh</p>;
     }
     return (
-      <Suspense fallback={<div>Loading</div>}>
+      <>
         <GlobalStyle />
         <Details text={this.state.data.details.details} id={this.state.data.details.id} />
         <Hr />
-        <TabsDiv>
-          <TabButton title='VIDEOS' handleClick={this.handleTabButtonClick} featured={this.state.currentlyDisplaying === 'VIDEOS'}/>
-          <TabButton title='SCREENSHOTS' handleClick={this.handleTabButtonClick} featured={this.state.currentlyDisplaying === 'SCREENSHOTS'} />
-        </TabsDiv>
-        <MediaDiv>
-          <BigMediaCarousel featured={this.state.featuredMedia} handleButtonClick={this.handleButtonClick} length={this.state.currentlyDisplaying === 'VIDEOS' ? this.state.data.videos.length : this.state.data.screenshots.length}/>
-          <MediaCarousel mediaList={this.state.currentlyDisplaying === 'SCREENSHOTS' ? this.state.data.screenshots : this.state.data.videos} imageClickHandler={this.handleImageClick} />
-        </MediaDiv>
-      </Suspense>
+        <Suspense fallback={<div>Loading</div>}>
+          <TabsDiv>
+            <TabButton title='VIDEOS' handleClick={this.handleTabButtonClick} featured={this.state.currentlyDisplaying === 'VIDEOS'}/>
+            <TabButton title='SCREENSHOTS' handleClick={this.handleTabButtonClick} featured={this.state.currentlyDisplaying === 'SCREENSHOTS'} />
+          </TabsDiv>
+        </Suspense>
+        <Suspense fallback={<div>Loading</div>}>
+          <MediaDiv>
+            <BigMediaCarousel featured={this.state.featuredMedia} handleButtonClick={this.handleButtonClick} length={this.state.currentlyDisplaying === 'VIDEOS' ? this.state.data.videos.length : this.state.data.screenshots.length}/>
+            <MediaCarousel mediaList={this.state.currentlyDisplaying === 'SCREENSHOTS' ? this.state.data.screenshots : this.state.data.videos} imageClickHandler={this.handleImageClick} />
+          </MediaDiv>
+        </Suspense>
+      </>
     );
   }
 }
